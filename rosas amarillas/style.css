@@ -1,0 +1,132 @@
+/* META TAG RECOMENDADO en tu <head> (agrega esto en el HTML):
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+*/
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, system-ui, -apple-system, sans-serif;
+    background: #fcf3d0;
+    color: black;
+    overflow: hidden;
+    min-height: 100dvh;           /* Mejor que 100vh en móviles */
+    -webkit-tap-highlight-color: transparent; /* Quita el resaltado azul al tocar */
+}
+
+/* PANTALLAS */
+.pantalla {
+    position: absolute;
+    width: 100%;
+    height: 100dvh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.pantalla.activa {
+    display: flex;
+}
+
+/* TEXTO */
+.texto {
+    max-width: 90%;
+    font-size: clamp(18px, 5vw, 22px);   /* Escala bonito en móviles */
+    line-height: 1.5;
+    padding: 0 10px;
+}
+
+/* IMAGEN PRINCIPAL */
+.img {
+    width: min(180px, 45vw);     /* Se adapta sin salirse */
+    max-width: 220px;
+    border-radius: 20px;
+    margin: 20px 0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* GALERIA */
+.galeria {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 10px 0;
+}
+
+.galeria img {
+    width: 140px;
+    max-width: 42vw;               /* Mejor en móviles */
+    border-radius: 15px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+}
+
+/* BOTONES - Más grandes y fáciles de tocar */
+button {
+    padding: 16px 30px;
+    margin-top: 25px;
+    background: gold;
+    border: none;
+    border-radius: 50px;           /* Más moderno y táctil */
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+    min-width: 180px;
+    touch-action: manipulation;    /* Mejor respuesta al tocar */
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+    transition: transform 0.1s, box-shadow 0.1s;
+}
+
+button:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 6px rgba(255, 215, 0, 0.4);
+}
+
+/* FONDO FLORES - Más optimizado para móvil */
+.fondo {
+    position: fixed;
+    width: 100%;
+    height: 100dvh;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+/* FLORES - Menos opacidad y movimiento más suave */
+.flor {
+    position: absolute;
+    font-size: 32px;
+    opacity: 0.12;
+    animation: flotar linear infinite;
+    will-change: transform;        /* Mejora rendimiento */
+}
+
+/* Animación más ligera */
+@keyframes flotar {
+    0% {
+        transform: translateY(110dvh) translateX(0) rotate(0deg);
+    }
+    100% {
+        transform: translateY(-20dvh) translateX(80px) rotate(25deg);
+    }
+}
+
+/* Pequeños ajustes extra para móviles */
+@media (max-width: 480px) {
+    .texto {
+        font-size: clamp(17px, 4.8vw, 21px);
+    }
+    
+    button {
+        padding: 15px 28px;
+        font-size: 17px;
+        min-width: 160px;
+    }
+    
+    .img {
+        width: min(160px, 40vw);
+    }
+}
